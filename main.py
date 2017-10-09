@@ -17,10 +17,13 @@ match_market_cap = re.search(r"(Market\ cap\: )(.*)", page.text)
 btc_price_usd = tree.xpath("//*[@id='container']/font[1]/b/text()")
 btc_price_eur = tree.xpath("//*[@id='container']/font[2]/b/text()")
 btc_generated = match_generated.group(2)
-btc_generated = btc_generated[:-5]
 btc_market_cap = match_market_cap.group(2)
-btc_market_cap = btc_market_cap[:-5]
 
+# slicing the strings to remove html tags
+btc_market_cap = btc_market_cap[:-5]
+btc_generated = btc_generated[:-5]
+
+# printing the data for testing
 print(btc_price_usd)
 print(btc_price_eur)
 print(btc_generated)
