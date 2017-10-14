@@ -31,7 +31,7 @@ btc_price_eur = tree.xpath("//*[@id='container']/font[2]/b/text()")
 btc_generated = match_generated.group(2)
 btc_market_cap = match_market_cap.group(2)
 
-# slicing the strings to remove unnecessary tags
+# slicing the strings to remove unnecessary tags and centering in the cli
 btc_price_usd = str(btc_price_usd)
 btc_price_eur = str(btc_price_eur)
 btc_price_usd = btc_price_usd[2:-2].center(11)
@@ -39,12 +39,15 @@ btc_price_eur = btc_price_eur[2:-2].center(11)
 btc_market_cap = btc_market_cap[:-9].center(23)
 btc_generated = btc_generated[:-5].center(13)
 
+# building the table for the cli
 data = " "+"="*centervar+"\n"
 data += " |    USD    |    EUR    |   MARKET CAP in USD   |    COINS    |\n "
 data += "="*centervar+"\n"
 data += " |{}|{}|{}|{}|\n ".format(
     btc_price_usd, btc_price_eur, btc_market_cap, btc_generated)
 data += "="*centervar+"\n"
+
+# building the cli
 window = curses.initscr()
 window.clear()
 window.addstr(title)
